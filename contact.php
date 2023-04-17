@@ -1,0 +1,36 @@
+<?php
+$titlepage = "Contact Us";
+include_once("components/connection.php");
+include_once("components/function.php");
+?>
+
+
+<?php include_once("components/user_navbar.php"); ?>
+<div class="heading">
+   <h3>contact us</h3>
+   <p><a href="index.php">Home </a> <span> / Contact</span></p>
+</div>
+
+<section class="contact">
+
+   <div class="row">
+
+      <div class="image">
+         <img src="images/contact-img.svg" alt="">
+      </div>
+
+      <form action="" method="post">
+         <h3>tell us something!</h3>
+         <input type="text" name="name" required placeholder="enter your name" maxlength="50" class="box">
+         <input type="number" name="number" required placeholder="enter your number" max="9999999999" min="0" class="box" onkeypress="if(this.value.length == 10) return false;">
+         <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box">
+         <textarea name="msg" placeholder="enter your message" required class="box" cols="30" rows="10" maxlength="500"></textarea>
+         <input type="submit" value="send message" class="btn" name="send">
+      </form>
+
+   </div>
+
+</section>
+<?php
+include_once("components/user_footer.php");
+?>
