@@ -1,7 +1,11 @@
 <?php
 $titlepage = "My Order";
+session_start();
 include_once("components/connection.php");
 include_once("components/function.php");
+include_once("components/user_session.php");
+$my_orders = getAllDate('orders', 'user_id', $user_id);
+
 ?>
 
 <?php include_once("components/user_navbar.php"); ?>
@@ -11,35 +15,29 @@ include_once("components/function.php");
 </div>
 
 <section class="orders">
-
    <h1 class="title">placed orders</h1>
-
    <div class="box-container">
-
-      <div class="box">
-         <p> placed on : <span>5-29-2022</span> </p>
-         <p> name : <span>shaikh anas</span> </p>
-         <p> number : <span>1234567899</span> </p>
-         <p> email : <span>shaikhanas@gmail.com</span> </p>
-         <p> address : <span>jogeshwari, mumbai, india - 400103</span> </p>
-         <p> your orders : <span>pizza 01 (1) - main dish 02 (3) -</span> </p>
-         <p> total price : <span>$12/-</span> </p>
-         <p> payment method : <span>cash on delivery</span> </p>
-         <p> payment status : <span>pending</span> </p>
-      </div>
-
-      <div class="box">
-         <p> placed on : <span>5-29-2022</span> </p>
-         <p> name : <span>shaikh anas</span> </p>
-         <p> number : <span>1234567899</span> </p>
-         <p> email : <span>shaikhanas@gmail.com</span> </p>
-         <p> address : <span>jogeshwari, mumbai, india - 400103</span> </p>
-         <p> your orders : <span>pizza 01 (1) - main dish 02 (3) -</span> </p>
-         <p> total price : <span>$12/-</span> </p>
-         <p> payment method : <span>cash on delivery</span> </p>
-         <p> payment status : <span>pending</span> </p>
-      </div>
-
+      <?php
+      if (count($my_orders)) {
+         foreach ($my_orders as $order) :
+      ?>
+            <div class="box">
+               <p> Placed On : <span><?php echo $order['placed_on'] ?></span> </p>
+               <p> Name : <span><?php echo $order['name'] ?></span> </p>
+               <p> Number : <span><?php echo $order['number'] ?></span> </p>
+               <p> Email : <span><?php echo $order['email'] ?></span> </p>
+               <p> Address : <span><?php echo $order['address'] ?></span> </p>
+               <p> Your Orders : <span><?php echo $order['total_products'] ?></span> </p>
+               <p> Total Price : <span>$<?php echo $order['total_price'] ?>/-</span> </p>
+               <p> Payment Method : <span><?php echo $order['method'] ?></span> </p>
+               <p> Payment Status : <span><?php echo $order['payment_status'] ?></span> </p>
+            </div>
+      <?php
+         endforeach;
+      } else {
+         echo "<div class='empty'>No Order Selected Yet !!</div>";
+      }
+      ?>
    </div>
 
 </section>

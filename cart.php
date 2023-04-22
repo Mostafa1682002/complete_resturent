@@ -12,8 +12,45 @@ foreach ($all_product_cart as $product) {
    $total_price += $product['price'] * $product['quantity'];
 }
 
+
+if (isset($_POST['edit_quantity'])) {
+   $product_id = $_POST['product_id'];
+   $new_quantity = $_POST['qty'];
+   $update_quantity = $connection->query("UPDATE `cart` SET `quantity`=$new_quantity WHERE `product_id`=$product_id");
+   if ($update_quantity) {
+      header("location: cart.php");
+      exit();
+   }
+}
+
+//Delete one Product
+if (isset($_POST['delete'])) {
+   $product_id = $_POST['product_id'];
+   $delete_product = $connection->query("DELETE FROM `cart` WHERE `product_id`=$product_id ");
+   if ($delete_product) {
+      $message[] = "Sucssed Delete Product From Cart";
+      header("location: cart.php");
+      exit();
+   }
+}
+
+// Delete All Product In Cart 
+if (isset($_GET['deletall'])) {
+   $deleteall_product = $connection->query("DELETE FROM `cart`");
+   if ($deleteall_product) {
+      $message[] = "Sucssed Delete All Products From Cart";
+      header("location: cart.php");
+      exit();
+   }
+}
 ?>
 
+<style>
+   .checkout_btn {
+      pointer-events: none;
+      opacity: .8;
+   }
+</style>
 <?php include_once("components/user_navbar.php"); ?>
 <div class="heading">
    <h3>shopping cart</h3>
@@ -21,12 +58,11 @@ foreach ($all_product_cart as $product) {
 </div>
 
 <section class="products">
-
    <h1 class="title">your cart</h1>
-
    <div class="cart-total">
       <p>grand total : <span>$<?php echo $total_price ?>/-</span></p>
-      <a href="checkout.php" class="btn">checkout orders</a>
+      <a href="checkout.php" class="btn <?php echo count($all_product_cart) == 0 ? 'checkout_btn' : ''; ?>">checkout
+         orders</a>
    </div>
    </div>
 
@@ -36,17 +72,20 @@ foreach ($all_product_cart as $product) {
          foreach ($all_product_cart as $product) {
       ?>
             <div class="box">
-               <a href="quick_view.php?pid=<?= $product['product_id']; ?>" class="fas fa-eye"></a>
-               <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-               <img src="uploaded_img2/<?php echo $product['image_product']  ?>" alt="">
-               <div class="name"><?php echo $product['product_name']  ?></div>
-               <div class="flex">
-                  <div class="price"><span>$</span><?php echo $product['price']  ?></div>
-                  <input type="number" name="qty" class="qty" min="1" max="99" value="<?php echo  $product['quantity']  ?>" onkeypress="if(this.value.length == 2) return false;">
-                  <button type="submit" name="edit_quantity" class="fas fa-edit"></button>
-               </div>
-               <div class="sub-total">sub total : <span>$<?php echo $product['price'] * $product['quantity']  ?></span>
-               </div>
+               <form method="post">
+                  <input type="hidden" name="product_id" value="<?php echo  $product['product_id']  ?>">
+                  <a href="quick_view.php?pid=<?= $product['product_id']; ?>" class="fas fa-eye"></a>
+                  <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
+                  <img src="uploaded_img2/<?php echo $product['image_product']  ?>" alt="">
+                  <div class="name"><?php echo $product['product_name']  ?></div>
+                  <div class="flex">
+                     <div class="price"><span>$</span><?php echo $product['price']  ?></div>
+                     <input type="number" name="qty" class="qty" min="1" max="99" value="<?php echo  $product['quantity']  ?>" onkeypress="if(this.value.length == 2) return false;">
+                     <button type="submit" name="edit_quantity" class="fas fa-edit"></button>
+                  </div>
+                  <div class="sub-total">sub total : <span>$<?php echo $product['price'] * $product['quantity']  ?></span>
+                  </div>
+               </form>
             </div>
       <?php
          }
@@ -57,7 +96,7 @@ foreach ($all_product_cart as $product) {
    </div>
 
    <div class="more-btn">
-      <a href="#" class="delete-btn" onclick="return confirm('delete all from cart?');">delete all</a>
+      <a href="cart.php?deletall" class="delete-btn <?php echo count($all_product_cart) == 0  ? 'checkout_btn' : ''; ?>" onclick="return confirm('delete all from cart?');">delete all</a>
    </div>
 
 </section>

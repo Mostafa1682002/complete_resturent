@@ -1,5 +1,6 @@
 <?php
 $titlepage = "Profile";
+session_start();
 include_once("components/connection.php");
 include_once("components/user_session.php");
 include_once("components/function.php");

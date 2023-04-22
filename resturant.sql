@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 10:35 PM
+-- Generation Time: Apr 22, 2023 at 01:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,9 +62,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `product_name`, `price`, `quantity`, `image_product`) VALUES
-(2, 6, 16, 'delicious pizza 02', 2, 5, 'pizza-2.png'),
-(3, 6, 23, 'fresh drink 03', 7, 4, 'drink-3.png'),
-(4, 6, 10, 'main dish 01', 2, 4, 'dish-1.png');
+(6, 6, 13, 'fresh drink 01', 4, 7, 'drink-1.png'),
+(7, 6, 19, 'delicious dessert 04', 12, 8, 'dessert-4.png');
 
 -- --------------------------------------------------------
 
@@ -87,7 +86,9 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`message_id`, `user_id`, `name`, `email`, `number`, `message_text`, `message_register`) VALUES
-(1, 0, 'mostafa168522222', 'ma@131.gmail.com', '01064564850', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2023-04-04');
+(1, 0, 'mostafa168522222', 'ma@131.gmail.com', '01064564850', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2023-04-04'),
+(2, 0, 'xxxxxxxx', 'xxxxx', '01064564850', 'xxxxxx', '2023-04-18'),
+(3, 0, 'مصطفي حسام رزق سيد', 'ma9856603@gmail.com', '0104685232', 'مشكلة منتج 1', '2023-04-18');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
-(1, 1, 'xxx', '01064564850', 'most1682002@gmail.com', 'xxxxxxxxxxxxxx', 'cairo', 'xxxxxxxxx', 50, '2023-04-15', 'pending');
+(1, 1, 'xxx', '01064564850', 'most1682002@gmail.com', 'xxxxxxxxxxxxxx', 'cairo', 'pizza 01 (1) - main dish 02 (3)', 50, '2023-04-15', 'pending'),
+(2, 1, 'car', '01064564850', 'most1682002@gmail.com', 'xxxxxxxxxxxxxx', 'cccccc', 'ccccc', 150, '2023-04-21', 'completed'),
+(3, 6, ' مصطفي حسام رزق سيد احمد', ' مصطفي حسام رزق سيد احمد', 'ma9856603@gmail.com', 'paytm', 'Mansoura.', 'delicious pizza 02(7) - ', 14, '2023-04-21', 'completed'),
+(4, 6, 'Mostafa Hossam Rizk', '01013590372', 'ma9856603@gmail.com', 'credit card', '30-rubik-Mansoura.', 'fresh drink 01(7) - delicious dessert 04(8) - ', 124, '2023-04-22', 'pending');
 
 -- --------------------------------------------------------
 
@@ -174,7 +178,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_number`, `user_password`, `user_address`, `user_register`) VALUES
 (3, 'ali', 'ali@gmail.com', '01064564850', '123456', 'cairo', '2023-04-06'),
 (5, 'ali222', 'ali222@gmail.com', '01064564850', '123456', 'cairo', '2023-04-06'),
-(6, ' مصطفي حسام رزق سيد احمد', 'ma9856603@gmail.com', '01013590372', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 'Mansoura.', '2023-04-16'),
+(6, 'Mostafa Hossam Rizk', 'ma9856603@gmail.com', '01013590372', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '30-rubik-Mansoura.', '2023-04-16'),
 (7, 'Khaled Hassan', 'Khaled1020@gmail.com', '01064564789', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'Alex', '2023-04-16');
 
 --
@@ -235,19 +239,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`

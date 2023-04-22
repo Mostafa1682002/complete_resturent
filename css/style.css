@@ -465,6 +465,10 @@ section {
 .products .cart-total .btn {
   margin-top: 0;
 }
+.checkout_btn {
+  pointer-events: none !important;
+  opacity: 0.8 !important;
+}
 
 .about .row {
   display: flex;
@@ -580,7 +584,7 @@ section {
 
 .steps .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   gap: 1.5rem;
   align-items: flex-start;
 }
