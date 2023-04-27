@@ -28,7 +28,7 @@
     </section>
 
     <div class="credit">
-        &copy; copyright @ <?php echo date_format(date_create(), 'Y') ?> by <span>Mostafa Hossam</span> | all rights
+        &copy; copyright @ <?php echo date('Y') ?> by <span>Mostafa Hossam</span> | all rights
         reserved!
     </div>
 </footer>
