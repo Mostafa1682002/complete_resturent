@@ -12,7 +12,7 @@ if (isset($_POST['register_user'])) {
    $confirm_password = $_POST['confirm_password'];
 
    if ($user_password == $confirm_password) {
-      $encypt_password = sha1($password);
+      $encypt_password = sha1($user_password);
       $add_user = $connection->query("INSERT INTO `users`(`user_id`,`user_name`,`user_email`,`user_number`,`user_password`) VALUES(NULL,'$user_name','$user_email','$user_number','$encypt_password')");
       if ($add_user) {
          $message[] = 'sucessed User Added';
