@@ -1,5 +1,4 @@
 <?php
-$titlepage = "Update Profile";
 include_once("../components/admin_session.php");
 include '../components/connection.php';
 include '../components/function.php';
@@ -57,23 +56,43 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<?php include '../components/admin_navbar.php'; ?>
-<!-- admin profile update section starts  -->
-<section class="form-container">
-    <form action="" method="POST">
-        <h3>update profile</h3>
-        <input type="text" name="name" maxlength="20" value="<?= $_SESSION['admin_name']; ?>" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')" placeholder="Enter your name">
-        <input type="password" name="old_pass" maxlength="20" placeholder="enter your old password" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')" required>
-        <input type="password" name="new_pass" maxlength="20" placeholder="enter your new password" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
-        <input type="password" name="confirm_pass" maxlength="20" placeholder="confirm your new password" class="box"
-            oninput="this.value = this.value.replace(/\s/g, '')">
-        <input type="submit" value="update now" name="submit" class="btn">
-    </form>
+<!DOCTYPE html>
+<html lang="en">
 
-</section>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update Profile</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <!-- custom css file link  -->
+        <link rel="stylesheet" href="../css/admin_style.css">
+    </head>
 
-<!-- admin profile update section ends -->
-<?php include '../components/admin_footer.php' ?>
+    <body>
+        <?php include '../components/admin_navbar.php'; ?>
+        <!-- admin profile update section starts  -->
+        <section class="form-container">
+            <form action="" method="POST">
+                <h3>update profile</h3>
+                <input type="text" name="name" maxlength="20" value="<?= $_SESSION['admin_name']; ?>" class="box"
+                    oninput="this.value = this.value.replace(/\s/g, '')" placeholder="Enter your name">
+                <input type="password" name="old_pass" maxlength="20" placeholder="enter your old password" class="box"
+                    oninput="this.value = this.value.replace(/\s/g, '')" required>
+                <input type="password" name="new_pass" maxlength="20" placeholder="enter your new password" class="box"
+                    oninput="this.value = this.value.replace(/\s/g, '')">
+                <input type="password" name="confirm_pass" maxlength="20" placeholder="confirm your new password"
+                    class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+                <input type="submit" value="update now" name="submit" class="btn">
+            </form>
+
+        </section>
+
+        <!-- admin profile update section ends -->
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="../js/admin_script.js"></script>
+    </body>
+
+</html>

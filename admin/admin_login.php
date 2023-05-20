@@ -1,7 +1,6 @@
 <?php
-$titlepage = "Admin Login";
-include '../components/connection.php';
 session_start();
+include '../components/connection.php';
 if (isset($_SESSION['admin_name'])) {
    header("Location: dashboard.php");
    exit();
@@ -33,17 +32,34 @@ if (isset($_POST['admin_login'])) {
 
 
 <!-- admin login form section starts  -->
-<?php
-include '../components/admin_navbar.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
 
-<section class="form-container">
-   <form action="" method="POST">
-      <h3>Admin Login</h3>
-      <input type="text" name="admin_name" placeholder="enter your username" class="box" required>
-      <input type="password" name="admin_pass" placeholder="enter your password" class="box" required>
-      <input type="submit" value="login now" name="admin_login" class="btn">
-   </form>
-</section>
-<!-- admin login form section ends -->
-<?php include '../components/admin_footer.php' ?>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Login</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <!-- custom css file link  -->
+        <link rel="stylesheet" href="../css/admin_style.css">
+    </head>
+
+    <body>
+
+        <section class="form-container">
+            <form action="" method="POST">
+                <h3>Admin Login</h3>
+                <input type="text" name="admin_name" placeholder="enter your username" class="box" required>
+                <input type="password" name="admin_pass" placeholder="enter your password" class="box" required>
+                <input type="submit" value="login now" name="admin_login" class="btn">
+            </form>
+        </section>
+        <!-- admin login form section ends -->
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="../js/admin_script.js"></script>
+    </body>
+
+</html>

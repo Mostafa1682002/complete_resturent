@@ -1,5 +1,4 @@
 <?php
-$titlepage = "Update Address";
 session_start();
 include_once("components/connection.php");
 include_once("components/user_session.php");
@@ -22,19 +21,37 @@ if (isset($_POST['update_Adress'])) {
 ?>
 
 
+<!DOCTYPE html>
+<html lang="en">
 
-<?php include_once("components/user_navbar.php"); ?>
-<section class="form-container">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Update Address</title>
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
 
-   <form action="" method="post">
-      <h3>your address</h3>
-      <input type="text" maxlength="50" value="<?php echo $address[0] ?>" placeholder="flat no. and building name" required class="box" name="flat">
-      <input type="text" maxlength="50" value="<?php echo $address[1] ?>" placeholder="street name" required class="box" name="street">
-      <input type="text" maxlength="50" value="<?php echo $address[2] ?>" placeholder="city name" required class="box" name="city">
-      <button type="submit" class="btn" name="update_Adress">save address</button>
-   </form>
+<body>
+   <?php include_once("components/user_navbar.php"); ?>
+   <section class="form-container">
 
-</section>
-<?php
-include_once("components/user_footer.php");
-?>
+      <form action="" method="post">
+         <h3>your address</h3>
+         <input type="text" maxlength="50" value="<?php echo $address[0] ?>" placeholder="flat no. and building name" required class="box" name="flat">
+         <input type="text" maxlength="50" value="<?php echo $address[1] ?>" placeholder="street name" required class="box" name="street">
+         <input type="text" maxlength="50" value="<?php echo $address[2] ?>" placeholder="city name" required class="box" name="city">
+         <button type="submit" class="btn" name="update_Adress">save address</button>
+      </form>
+
+   </section>
+   <?php include_once("components/user_footer.php"); ?>
+   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+   <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,4 @@
 <?php
-$titlepage = "Orders";
 include_once("../components/admin_session.php");
 include '../components/connection.php';
 include '../components/function.php';
@@ -25,22 +24,35 @@ if (isset($_GET['delete'])) {
 ?>
 
 
+<!DOCTYPE html>
+<html lang="en">
 
-<?php include '../components/admin_navbar.php'; ?>
-<!-- placed orders section starts  -->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orders</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <!-- custom css file link  -->
+        <link rel="stylesheet" href="../css/admin_style.css">
+    </head>
 
-<section class="placed-orders">
+    <body>
 
-    <h1 class="heading">placed orders</h1>
+        <?php include '../components/admin_navbar.php'; ?>
+        <!-- placed orders section starts  -->
 
-    <div class="box-container">
-
-        <?php
-        $select_orders = $connection->prepare("SELECT * FROM `orders`");
-        $select_orders->execute();
-        if ($select_orders->rowCount() > 0) {
-            while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
-        ?>
+        <section class="placed-orders">
+            <h1 class="heading">placed orders</h1>
+            <div class="box-container">
+                <?php
+            $select_orders = $connection->prepare("SELECT * FROM `orders`");
+            $select_orders->execute();
+            if ($select_orders->rowCount() > 0) {
+                while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
+            ?>
                 <div class="box">
                     <p> User Id : <span><?= $fetch_orders['user_id']; ?></span> </p>
                     <p> Placed On : <span><?= $fetch_orders['placed_on']; ?></span> </p>
@@ -61,20 +73,25 @@ if (isset($_GET['delete'])) {
                         </select>
                         <div class="flex-btn">
                             <input type="submit" value="update" class="btn" name="update_payment">
-                            <a href="placed_orders.php?delete=<?= $fetch_orders['order_id']; ?>" class="delete-btn" onclick="return confirm('delete this order?');">delete</a>
+                            <a href="placed_orders.php?delete=<?= $fetch_orders['order_id']; ?>" class="delete-btn"
+                                onclick="return confirm('delete this order?');">delete</a>
                         </div>
                     </form>
                 </div>
-        <?php
+                <?php
+                }
+            } else {
+                echo '<p class="empty">no orders placed yet!</p>';
             }
-        } else {
-            echo '<p class="empty">no orders placed yet!</p>';
-        }
-        ?>
+            ?>
 
-    </div>
+            </div>
 
-</section>
+        </section>
 
-<!-- placed orders section ends -->
-<?php include '../components/admin_footer.php' ?>
+        <!-- placed orders section ends -->
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="../js/admin_script.js"></script>
+    </body>
+
+</html>
